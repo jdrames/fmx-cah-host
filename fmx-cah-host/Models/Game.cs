@@ -27,10 +27,10 @@ namespace fmx_cah_host.Models
         public string CardZarId { get; private set; }
 
         [JsonPropertyName("players")]
-        public List<IPlayer> Players { get; private set; } = new List<IPlayer>();
+        public List<Player> Players { get; private set; } = new List<Player>();
 
         [JsonPropertyName("current_prompt_card")]
-        public ICard CurrentPromptCard { get; private set; }
+        public Card CurrentPromptCard { get; private set; }
 
         [JsonPropertyName("is_paused")]
         public bool IsPaused { get; private set; }
@@ -41,14 +41,14 @@ namespace fmx_cah_host.Models
         [JsonIgnore]
         public Dictionary<string, List<Card>> PlayerSubmittedCards = new Dictionary<string, List<Card>>();
 
-        private List<ICard> PromptCards;
-        private List<ICard> AnswerCards;
+        private List<Card> PromptCards;
+        private List<Card> AnswerCards;
 
-        private List<ICard> UsedPromptCards = new List<ICard>();
-        private List<ICard> UsedAnswerCards = new List<ICard>();
+        private List<Card> UsedPromptCards = new List<Card>();
+        private List<Card> UsedAnswerCards = new List<Card>();
 
         // Constructor
-        public Game(string id, string passcode, IPlayer creator, List<ICard> promptCards, List<ICard> answerCards)
+        public Game(string id, string passcode, Player creator, List<Card> promptCards, List<Card> answerCards)
         {
             Id = id;
             CreatorId = creator.Id;
@@ -85,12 +85,12 @@ namespace fmx_cah_host.Models
         }
 
 
-        public List<ICard> GetPlayerCards(string playerId)
+        public List<Card> GetPlayerCards(string playerId)
         {
 
             lock (LOCK)
             {
-                IPlayer player;
+                Player player;
                 if (!TryGetPlayer(playerId, out player))
                     return default;
 
@@ -162,9 +162,9 @@ namespace fmx_cah_host.Models
         /// <summary>
         /// A list of players that are currently online
         /// </summary>
-        private List<IPlayer> OnlinePlayers { get
+        private List<Player> OnlinePlayers { get
             {
-                var onlineList = new List<IPlayer>();
+                var onlineList = new List<Player>();
                 foreach (var player in Players.Where(p => p.IsOnline))
                     onlineList.Add(player);
 
@@ -270,7 +270,7 @@ namespace fmx_cah_host.Models
             player.Points++;            
         }
 
-        public bool TryGetPlayer(string playerId, out IPlayer player)
+        public bool TryGetPlayer(string playerId, out Player player)
         {
             var playerResult = Players.FirstOrDefault(p => p.Id == playerId);
             if (playerResult == null)
@@ -282,7 +282,7 @@ namespace fmx_cah_host.Models
             return true;
         }
 
-        public void AddPlayer(string playerId, IPlayer player)
+        public void AddPlayer(string playerId, Player player)
         {
             if (Players.Count(p => p.Id == playerId) != 0)
                 return;

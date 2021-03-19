@@ -10,7 +10,7 @@ namespace fmx_cah_host.Models
     /// <summary>
     /// A Cards Against Humanity card
     /// </summary>
-    public class Card : ICard
+    public class Card
     {
         /// <summary>
         /// Unique ID for the card

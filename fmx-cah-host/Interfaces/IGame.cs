@@ -48,13 +48,13 @@ namespace fmx_cah_host.Interfaces
         /// The players that are in the game
         /// </summary>
         [JsonPropertyName("players")]
-        public List<IPlayer> Players { get; }
+        public List<Player> Players { get; }
 
         /// <summary>
         /// The current prompt(black) card for the round
         /// </summary>
         [JsonPropertyName("current_prompt_card")]
-        public ICard CurrentPromptCard { get; }
+        public Card CurrentPromptCard { get; }
 
         /// <summary>
         /// Indicates if the game is paused
@@ -76,7 +76,7 @@ namespace fmx_cah_host.Interfaces
         /// <param name="playerId"></param>
         /// <param name="player"></param>
         /// <returns></returns>
-        public bool TryGetPlayer(string playerId, out IPlayer player);
+        public bool TryGetPlayer(string playerId, out Player player);
 
         /// <summary>
         /// Adds a player to the game.
@@ -84,14 +84,14 @@ namespace fmx_cah_host.Interfaces
         /// <param name="playerId"></param>
         /// <param name="player"></param>
         /// <returns></returns>
-        public void AddPlayer(string playerId, IPlayer player);
+        public void AddPlayer(string playerId, Player player);
 
         /// <summary>
         /// Gets a list of the players cards
         /// </summary>
         /// <param name="playerId"></param>
         /// <returns></returns>
-        public List<ICard> GetPlayerCards(string playerId);
+        public List<Card> GetPlayerCards(string playerId);
 
         /// <summary>
         /// Submits the players cards to the current game

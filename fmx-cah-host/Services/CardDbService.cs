@@ -12,7 +12,7 @@ namespace fmx_cah_host.Services
     public class CardDbService
     {
         private readonly object LOCK = new object();
-        private List<ICard> CardCollection = new List<ICard>();
+        private List<Card> CardCollection = new List<Card>();
         private bool _loadedCards = false;
 
         public CardDbService()
@@ -32,9 +32,9 @@ namespace fmx_cah_host.Services
         /// <param name="type">The type of cards to retrieve</param>
         /// <param name="packs">List of packs the cards should be retrieved from</param>
         /// <returns></returns>
-        public List<ICard> GetCards(CardType type, List<CardPack> packs)
+        public List<Card> GetCards(CardType type, List<CardPack> packs)
         {            
-            var cards = new List<ICard>();
+            var cards = new List<Card>();
             foreach(var pack in packs)
             {                
                 foreach(var dbCard in CardCollection.Where(c=>c.Pack == pack && c.Type == type))

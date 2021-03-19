@@ -117,7 +117,7 @@ namespace fmx_cah_host.Hubs
         /// </summary>
         /// <param name="gameId"></param>
         /// <returns></returns>
-        public List<ICard> GetPlayerCards(string gameId)
+        public List<Card> GetPlayerCards(string gameId)
         {
             if (!_gameService.TryGetGame(gameId, out var game))
                 return default;

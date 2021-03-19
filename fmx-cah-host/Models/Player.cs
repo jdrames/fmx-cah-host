@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace fmx_cah_host.Models
 {
-    public class Player : IPlayer
+    public class Player
     {
         [JsonPropertyName("id")]
         public string Id { get; private set; }
@@ -22,7 +22,7 @@ namespace fmx_cah_host.Models
         public bool IsInRound { get; set; }
 
         [JsonIgnore]
-        public List<ICard> Cards { get; set; } = new List<ICard>();
+        public List<Card> Cards { get; set; } = new List<Card>();
 
         [JsonPropertyName("points")]
         public int Points { get; set; }
