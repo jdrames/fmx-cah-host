@@ -66,7 +66,7 @@ namespace fmx_cah_host
                     .AllowAnyHeader()
                     .AllowAnyMethod()   
                     .AllowCredentials()
-                    .WithOrigins("https://*.forcemx.com"); // This is where we host the game server
+                    .WithOrigins("https://www.forcemx.com"); // This is where we host the game server
                 });
             });
 
